@@ -52,3 +52,25 @@ const company = {
         }
     ]
 };
+
+// Task 2
+// Create a Recursive Function to Calculate Total Salary for a Department
+function calculateDepartmentSalary(employees) {
+    let total = 0;
+
+    employees.forEach(employee => {
+        total += employee.salary; // Add salary of employee to total
+        if (employee.subordinates && employee.subordinates.length > 0) {
+            total += calculateDepartmentSalary(employee.subordinates); // Recursively add subordinates' salaries
+        }
+    });
+
+    return total;
+}
+
+// Total salaries for Engineering & Sales departments
+const totalSalariesEngineering = calculateDepartmentSalary(company.departments[0].employees);
+console.log(`Engineering Department Total Salaries: $${totalSalariesEngineering}`);// Logs total salary for engineering department
+
+const totalSalariesSales = calculateDepartmentSalary(company.departments[1].employees);
+console.log(`Sales Department Total Salaries: $${totalSalariesSales}`);// Logs total salary for sales department
