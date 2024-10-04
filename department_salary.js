@@ -71,6 +71,17 @@ function calculateDepartmentSalary(employees) {
 // Total salaries for Engineering & Sales departments
 const totalSalariesEngineering = calculateDepartmentSalary(company.departments[0].employees);
 console.log(`Engineering Department Total Salaries: $${totalSalariesEngineering}`);// Logs total salary for engineering department
-
 const totalSalariesSales = calculateDepartmentSalary(company.departments[1].employees);
 console.log(`Sales Department Total Salaries: $${totalSalariesSales}`);// Logs total salary for sales department
+
+// Task 3
+// Create a Function to Calculate the Total Salary for All Departments
+function calculateCompanySalary(company) {
+    return company.departments.reduce((total, department) => {
+        return total + calculateDepartmentSalary(department.employees);
+    }, 0);
+}
+
+// Calculate total salary for the entire company
+const totalCompanySalaries = calculateCompanySalary(company);
+console.log(`Total Company Salaries: $${totalCompanySalaries}`);
